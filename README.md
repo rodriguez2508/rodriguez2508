@@ -4,8 +4,6 @@ Ingeniero Informático | Desarrollador Full-Stack
 
 [![Gmail Badge](https://img.shields.io/badge/Gmail-Correo-red?style=flat-square&logo=gmail)](mailto:rodriguezjeancarlosrodriguez@gmail.com)
 
-Matanzas, Cuba · +53 5 4410204
-
 ## Sobre mí
 
 Ingeniero Informático graduado de la Universidad de Matanzas “Camilo Cienfuegos” con experiencia en desarrollo web full-stack. Apasionado por la creación de soluciones tecnológicas innovadoras y con un enfoque en la experiencia del usuario. Lideré el desarrollo de Linki, la primera red social cubana para solicitar transporte directo entre usuarios, sin intermediarios, demostrando mi capacidad para llevar ideas desde la concepción hasta la implementación.
@@ -26,7 +24,7 @@ La primera red social cubana que conecta directamente a usuarios para solicitar 
     *   Autenticación con Google OAuth y acceso a Google Drive.
     *   Diseño y gestión de la base de datos con PostgreSQL.
 
-[Enlace al repositorio de Linki (si lo tienes)]
+[https://linki-cuba.onrender.com]
 
 ### GeoApp - Proyecto para la implementación de un mapa en una aplicación web
 
