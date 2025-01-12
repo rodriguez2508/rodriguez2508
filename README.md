@@ -34,7 +34,7 @@ La primera red social cubana que conecta directamente a usuarios para solicitar 
     *   Desarrollo frontend con Angular, creando una interfaz de usuario intuitiva y eficiente.
     *   Integración de OpenLayers y OpenRouteService para funcionalidades de geolocalización y cálculo de rutas.
 
-[Enlace al repositorio de GeoApp (si lo tienes)]
+[Enlace]
 
 ## Habilidades
 
