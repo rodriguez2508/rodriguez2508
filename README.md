@@ -35,7 +35,7 @@ La primera red social cubana que conecta directamente a usuarios para solicitar 
     *   Desarrollo frontend con Angular, creando una interfaz de usuario intuitiva y eficiente.
     *   Integración de OpenLayers y OpenRouteService para funcionalidades de geolocalización y cálculo de rutas.
 
-[Enlace]
+[(https://github.com/rodriguez2508/GeoApp)]
 
 ## Habilidades
 
@@ -60,10 +60,7 @@ La primera red social cubana que conecta directamente a usuarios para solicitar 
 
 *   PostgreSQL
 
-### Idiomas
-
-*   Español (Nativo)
-*   Inglés (Básico)
+*   MongoDB
 
 ## Contacto
 
