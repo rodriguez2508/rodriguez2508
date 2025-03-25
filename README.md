@@ -1,12 +1,13 @@
 # Jean Carlos Rodríguez
 
-Ingeniero Informático | Desarrollador Full-Stack
+
+**Ingeniero Informático - Desarrollador Full-Stack (Angular, NestJS, PostgreSQL)**
 
 [![Gmail Badge](https://img.shields.io/badge/Gmail-Correo-red?style=flat-square&logo=gmail)](mailto:rodriguezjeancarlosrodriguez@gmail.com)
 
 ## Sobre mí
 
-Ingeniero Informático graduado de la Universidad de Matanzas “Camilo Cienfuegos” con experiencia en desarrollo web full-stack. Apasionado por la creación de soluciones tecnológicas innovadoras y con un enfoque en la experiencia del usuario. Lideré el desarrollo de Linki, la primera red social cubana para solicitar transporte directo entre usuarios, sin intermediarios, demostrando mi capacidad para llevar ideas desde la concepción hasta la implementación.
+Ingeniero Informático Full-Stack con sólida experiencia en el desarrollo de aplicaciones web escalables y centradas en el usuario, utilizando un stack tecnológico moderno que incluye Angular, NestJS y PostgreSQL. Liderazgo comprobado en proyectos de desarrollo de software, desde la concepción hasta la implementación, como se demuestra en el lanzamiento de Linki, una innovadora red social cubana para transporte.
 
 ## Proyectos Destacados
 
