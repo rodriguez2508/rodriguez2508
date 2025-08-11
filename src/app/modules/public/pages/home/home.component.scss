@@ -1,0 +1,21 @@
+.profile-image {
+  width: 800px;
+  height: 250px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  border: 3px solid #fff;
+  /* Borde blanco */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* Sombra sutil */
+  object-fit: cover;
+  /* Asegura que la imagen se ajuste al círculo */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Animación suave */
+}
+
+.profile-image:hover {
+  transform: scale(1.1);
+  /* Efecto de zoom al pasar el mouse */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  /* Sombra más pronunciada al pasar el mouse */
+}
