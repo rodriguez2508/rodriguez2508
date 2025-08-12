@@ -7,6 +7,7 @@ export interface Experience {
 }
 
 export interface Project {
+    id?: string;
     title: string;
     description: string;
     technologies: string[];
@@ -52,34 +53,40 @@ export const CV_DATA = {
     ] as Experience[],
     projects: [
         {
+            id: 'linki',
             title: 'Linki – Red Social para Transporte',
             description: 'Plataforma Full Stack con Angular, NestJS y PostgreSQL. Integra WebSockets (Socket.IO) para chat en tiempo real y OpenLayers para geolocalización precisa.',
             technologies: ['TypeScript', 'Angular', 'NestJS', 'TypeORM', 'Socket.IO', 'OpenStreetMap', 'Google OAuth'],
             link: 'linki-cuba.onrender.com'
         },
         {
+            id: 'crm',
             title: 'CRM con Bot de WhatsApp',
             description: 'Sistema de gestión de clientes desarrollado con NestJS y Angular v19. Integra una API de WhatsApp para automatizar la comunicación y gestión de tickets. Resultado: Reducción del 50% en el tiempo de respuesta manual y centralización de la comunicación con clientes.',
             technologies: ['NestJS', 'Angular', 'TypeScript', 'WhatsApp API', 'PostgreSQL']
         },
         {
+            id: 'migracion-angular',
             title: 'Migración y Modernización de Angular',
             description: 'Proyecto de actualización de una aplicación de Angular 16 a Angular 19, implementando nuevas características como Signals y takeUntilDestroyed para mejorar la gestión de estado y prevenir fugas de memoria.',
             technologies: ['Angular', 'TypeScript', 'NgRx', 'SignalStore']
         },
         {
+            id: 'geoapp',
             title: 'GeoApp – Mapa Interactivo',
             description: 'Aplicación frontend con Angular y OpenLayers que ofrece geolocalización en tiempo real y cálculo de rutas a través de la API de OpenRouteService.',
             technologies: ['Angular', 'OpenLayers'],
             link: 'github.com/rodriguez2508/GeoApp'
         },
         {
+            id: 'staticfiles',
             title: 'Backend-StaticFiles – Servidor de Archivos Estáticos',
             description: 'Aplicación backend con NestJS que sirve archivos estáticos del frontend, simplificando el despliegue y la gestión de proyectos monolíticos.',
             technologies: ['NestJS'],
             link: 'github.com/rodriguez2508/Backend-StaticFiles'
         },
         {
+            id: 'angular-unit-test',
             title: 'AngularUnitTest – Pruebas Unitarias',
             description: 'Proyecto de demostración en Angular con Jasmine y Karma, logrando una cobertura de código del 90% para garantizar la estabilidad en producción.',
             technologies: ['Angular', 'Jasmine', 'Karma'],

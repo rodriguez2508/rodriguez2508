@@ -1,4 +1,4 @@
-import { Injectable, ElementRef, Renderer2, RendererFactory2, afterNextRender } from '@angular/core';
+import { Injectable, ElementRef, Renderer2, RendererFactory2, afterNextRender, runInInjectionContext, Injector, inject } from '@angular/core';
 
 export class Particle {
   x: number = 0;
@@ -10,7 +10,7 @@ export class Particle {
   constructor() {
 
     afterNextRender(() => {
-      
+
       this.x = Math.random() * window.innerWidth;
       this.y = Math.random() * window.innerHeight;
       this.vx = (Math.random() - 0.5) * 1;
@@ -48,7 +48,10 @@ export class Particle {
   providedIn: 'root'
 })
 export class ParticlesService {
-  private renderer: Renderer2;
+
+  private injector = inject(Injector)
+
+  private renderer!: Renderer2;
   private canvas?: HTMLCanvasElement;
   private ctx?: CanvasRenderingContext2D;
   private particles: Particle[] = [];
@@ -56,19 +59,28 @@ export class ParticlesService {
   private isInitialized = false;
 
   constructor(rendererFactory: RendererFactory2) {
-    this.renderer = rendererFactory.createRenderer(null, null);
+
+    afterNextRender(() => {
+      this.renderer = rendererFactory.createRenderer(null, null);
+    });
   }
 
   init(): void {
     if (this.isInitialized) return;
 
-    console.log('Inicializando partículas globales...');
-    this.createCanvas();
-    this.initParticles();
-    this.startAnimation();
-    this.bindResizeEvent();
-    this.isInitialized = true;
-    console.log('Partículas inicializadas:', this.particles.length, 'partículas creadas');
+
+    runInInjectionContext(this.injector, () => {
+      afterNextRender(() => {
+        console.log('Inicializando partículas globales...');
+        this.createCanvas();
+        this.initParticles();
+        // this.startAnimation();
+        this.bindResizeEvent();
+        this.isInitialized = true;
+        console.log('Partículas inicializadas:', this.particles.length, 'partículas creadas');
+      });
+    });
+
   }
 
   destroy(): void {
@@ -92,7 +104,7 @@ export class ParticlesService {
     this.renderer.addClass(this.canvas, 'global-particles-canvas');
 
     // Estilos para el canvas
-    this.renderer.setStyle(this.canvas, 'position', 'fixed');
+    this.renderer.setStyle(this.canvas, 'position', 'absolute');
     this.renderer.setStyle(this.canvas, 'top', '0');
     this.renderer.setStyle(this.canvas, 'left', '0');
     this.renderer.setStyle(this.canvas, 'width', '100%');

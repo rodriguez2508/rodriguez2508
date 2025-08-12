@@ -1,4 +1,4 @@
-import { afterNextRender, Component, OnDestroy, OnInit, signal } from '@angular/core';
+import { afterNextRender, Component, inject, Injector, OnDestroy, OnInit, runInInjectionContext, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -26,6 +26,9 @@ import { LoadingService } from '@services/loading/loading.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
+
+  private injector = inject(Injector);
+
   title = 'Jean Carlos Rodríguez | Full-Stack Developer';
   appContentVisible = signal(false);
   private lenis!: Lenis;
@@ -34,17 +37,26 @@ export class AppComponent implements OnInit, OnDestroy {
     private titleService: Title,
     private metaService: Meta,
     private location: Location,
-    private particlesService: ParticlesService,
+    // private particlesService: ParticlesService,
     private loadingService: LoadingService
   ) {
     afterNextRender(() => {
-      this.initLenis();
-      // inicializar partículas después de un breve delay
-      setTimeout(() => this.particlesService.init(), 100);
+     
+      
     });
   }
 
   ngOnInit(): void {
+
+    runInInjectionContext(this.injector, () => {
+      afterNextRender(() => {
+        // inicializar partículas después de un breve delay
+        // this.particlesService.init();
+
+         this.initLenis();
+      });
+    });
+
     // Configurar título y meta tags
     this.titleService.setTitle(this.title);
     this.metaService.addTags([
@@ -67,7 +79,7 @@ export class AppComponent implements OnInit, OnDestroy {
       duration: 1.2,
       easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       gestureOrientation: 'vertical',
-      smoothWheel: true,
+      smoothWheel: false, // Deshabilita el scroll suave con la rueda del ratón
       syncTouch: false
     });
 
@@ -80,7 +92,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (this.lenis) this.lenis.destroy();
-    this.particlesService.destroy();
   }
 
   onSplashAnimationCompleted(): void {

@@ -1,5 +1,16 @@
-<section class="section" id="jobs">
-  <div class="container jobs">
-    
+<section id="proyectos" class="d-flex align-items-center justify-content-center bg-gradient bg-light pt-5 pb-5">
+  <div class="container">
+    <h2 class="text-center mb-5 fw-bold title">Proyectos que Hablan por mí</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 jobs-tabs">
+      @for (project of data.projects.slice(0, 3); track project.id) {
+        <div class="col">
+          <div class="card h-100 bg-dark text-white border-0 shadow-sm p-3">
+            <h5 class="card-title fw-semibold">{{ project.title }}</h5>
+            <p class="card-text text-secondary">{{ project.description | slice:0:100 }}...</p>
+            <a [href]="project.link" target="_blank" class="stretched-link text-primary text-decoration-none">Ver más</a>
+          </div>
+        </div>
+      }
+    </div>
   </div>
 </section>

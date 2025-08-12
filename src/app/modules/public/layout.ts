@@ -8,6 +8,7 @@ import { ProyectsComponent } from './pages/proyects/proyects.component';
 import { HomeComponent } from './pages/home/home.component';
 import { Header } from '@shared/header/header';
 import { Footer } from '@shared/footer/footer';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-layout',
@@ -20,7 +21,8 @@ import { Footer } from '@shared/footer/footer';
     MoreProyectsComponent,
     ContactComponent,
     Header,
-    Footer
+    Footer,
+    MatCardModule
 
   ],
   templateUrl: './layout.html',

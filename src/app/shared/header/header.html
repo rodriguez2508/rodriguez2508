@@ -1,23 +1,66 @@
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm bg-dark">
-  <div class="container-fluid px-5">
-    <div class="d-flex align-items-center">
-      <img [src]="cvData.profile.profileImageUrl" alt="Imagen de perfil" class="profile-image me-2">
-      <a class="navbar-brand" routerLink="/">{{ cvData.profile.name }}</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm border-bottom" style="border-bottom-color: #e0e0e0 !important;">
+  <div class="container-fluid">
+    <!-- Primera fila: Foto de perfil y buscador -->
+    <div class="d-flex align-items-center justify-content-between w-100">
+      <!-- Foto de perfil -->
+      <div class="d-flex align-items-center">
+        <img [src]="cvData.profile.profileImageUrl" alt="Jean Carlos" class="rounded-circle me-3 profile-image" 
+             [style]="'width: 40px; height: 40px; object-fit: cover; border: 2px solid' + lightSlate"
+             (click)="toggleDropdown()">
+      </div>
+
+      <!-- Buscador -->
+      <form [class.d-none]="s_isDropdownOpen()" class="d-flex">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Buscar" aria-label="Buscar">
+          <button class="btn btn-outline-secondary" type="button">
+            <mat-icon>search</mat-icon>
+          </button>
+        </div>
+      </form>
     </div>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav fw-semibold">
-        <li class="nav-item"><a class="nav-link text-white" routerLink="/about">Sobre mí</a></li>
-        <li class="nav-item"><a class="nav-link text-white" routerLink="/education">Educación</a></li>
-        <li class="nav-item"><a class="nav-link text-white" routerLink="/experience">Experiencia</a></li>
-        <li class="nav-item"><a class="nav-link text-white" routerLink="/projects">Proyectos</a></li>
-        <li class="nav-item"><a class="nav-link text-white" routerLink="/skills">Habilidades</a></li>
-        <li class="nav-item"><a class="nav-link text-white" routerLink="/contact">Contacto</a></li>
+
+    <!-- Segunda fila: Menú de navegación (oculto en sm y md) -->
+    <div class="d-flex align-items-center w-100 d-none d-lg-flex">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="#home">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="#about">Sobre mí</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="#jobs">Empleo</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="#proyects">Proyectos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="#contact">Contacto</a>
+        </li>
       </ul>
-      <a href="assets/cv.pdf" download class="btn btn-outline-light ms-3">Descargar CV</a>
+      <a href="assets/cv.pdf" class="btn btn-outline-secondary ms-3" download>Descargar CV</a>
     </div>
   </div>
+   
+  <!-- Sección desplegable -->
+  @if (s_isDropdownOpen()) {
+    <div class="dropdown-menu middle-z-index set-height-100 w-100 animate-slide-down pt-5">
+      <a class="dropdown-item hover:bg-blue-50 transition-colors duration-200" href="#home">
+        <mat-icon class="me-2">home</mat-icon>Inicio
+      </a>
+      <a class="dropdown-item hover:bg-blue-50 transition-colors duration-200" href="#about">
+        <mat-icon class="me-2">person</mat-icon>Sobre mí
+      </a>
+      <a class="dropdown-item hover:bg-blue-50 transition-colors duration-200" href="#jobs">
+        <mat-icon class="me-2">work</mat-icon>Empleo
+      </a>
+      <a class="dropdown-item hover:bg-blue-50 transition-colors duration-200" href="#proyects">
+        <mat-icon class="me-2">folder</mat-icon>Proyectos
+      </a>
+      <a class="dropdown-item hover:bg-blue-50 transition-colors duration-200 text-uppercase" href="#contact">
+        <mat-icon class="me-2">email</mat-icon>Contacto
+      </a>
+    </div>
+  }
 </nav>
