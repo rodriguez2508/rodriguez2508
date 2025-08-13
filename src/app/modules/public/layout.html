@@ -6,32 +6,16 @@
 
     <!-- Contenido Principal -->
     <mat-card-content class="flex-grow mt-16 set-height-s-100 d-block">
-        <!-- mt-16 para evitar superposición con el header -->
-        <section id="home" class="min-h-screen">
-            <app-home></app-home>
-        </section>
-        <section id="about" class="min-h-screen">
-            <app-about></app-about>
-        </section>
-        <section id="jobs" class="min-h-screen bg-gray-100">
-            <app-jobs></app-jobs>
-        </section>
-        <!-- <section id="banner" class="min-h-screen bg-blue-100">
-            <app-banner></app-banner>
-        </section> -->
-        <!-- <section id="proyects" class="min-h-screen bg-gray-200">
-            <app-proyects></app-proyects>
-        </section> -->
-        <!-- <section id="more-proyects" class="min-h-screen bg-gray-100">
-            <app-more-proyects></app-more-proyects>
-        </section> -->
-        <!-- <section id="contact" class="min-h-screen bg-gray-200">
-            <app-contact></app-contact>
-        </section> -->
+        
+        <router-outlet />
+
     </mat-card-content>
 
     <!-- Footer -->
-    <mat-card-content class="w3-row w3-col">
+    <!-- <mat-card-content class="w3-row w3-col">
         <app-footer></app-footer>
-    </mat-card-content>
+    </mat-card-content> -->
+
+    <app-chatbot></app-chatbot>
+    
 </div>

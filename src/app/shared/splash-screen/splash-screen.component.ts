@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, OnInit, OnDestroy, Output, EventEmitter, afterNextRender } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit, OnDestroy, Output, EventEmitter, afterNextRender, Injector, inject, runInInjectionContext, output } from '@angular/core';
 import lottie from 'lottie-web';
 
 @Component({
@@ -7,22 +7,34 @@ import lottie from 'lottie-web';
   styleUrls: ['./splash-screen.component.scss'],
 })
 export class SplashScreenComponent implements OnInit, OnDestroy {
+
+  private injector = inject(Injector);
+
   @ViewChild('lottieContainer', { static: true }) lottieContainer!: ElementRef;
-  @Output() animationCompleted = new EventEmitter<void>();
+  animationCompleted = output<void>();
 
   isHidden = false;
   private lottieAnimation: any;
-  private minimumLoadingTime = 1800; // Tiempo mínimo en milisegundos
+  private minimumLoadingTime = 3800; // Tiempo mínimo en milisegundos
   private splashTimeout?: number;
 
   constructor() {
+
     afterNextRender(() => {
       this.initLottieAnimation();
-      this.startSplashTimer();
     });
+
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    runInInjectionContext(this.injector, () => {
+      afterNextRender(() => {
+        this.startSplashTimer();
+      });
+    });
+
+
+  }
 
   ngOnDestroy(): void {
     if (this.lottieAnimation) {
@@ -42,12 +54,20 @@ export class SplashScreenComponent implements OnInit, OnDestroy {
         autoplay: true,
         path: 'assets/lotties/loader.json'
       });
-
+  
+      // Esperar a que la animación esté lista
+      this.lottieAnimation.addEventListener('DOMLoaded', () => {
+        console.log('Lottie animation loaded');
+        this.checkIfReadyToHide(); // Continuar con el flujo de la aplicación
+      });
+  
       this.lottieAnimation.addEventListener('error', (error: any) => {
         console.warn('Lottie animation error:', error);
+        this.checkIfReadyToHide(); // Continuar incluso si hay un error
       });
     } catch (error) {
       console.warn('Error initializing Lottie animation:', error);
+      this.checkIfReadyToHide(); // Continuar incluso si hay un error
     }
   }
 
@@ -74,11 +94,16 @@ export class SplashScreenComponent implements OnInit, OnDestroy {
   private hideSplashScreen(): void {
     if (this.isHidden) return; // Evitar múltiples llamadas
 
+    // Detener la animación de Lottie
+    if (this.lottieAnimation) {
+      this.lottieAnimation.stop(); // O usar this.lottieAnimation.destroy() si no necesitas reutilizar la animación
+    }
+
     this.isHidden = true;
 
     // Emitir evento después de que la animación de salida termine
     setTimeout(() => {
       this.animationCompleted.emit();
-    }, 800); // Coincide con la duración de la transición CSS
+    }, 3800); // Coincide con la duración de la transición CSS
   }
 }

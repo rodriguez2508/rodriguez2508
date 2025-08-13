@@ -24,41 +24,36 @@
     <div class="d-flex align-items-center w-100 d-none d-lg-flex">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link text-dark" href="#home">Inicio</a>
+          <a class="nav-link text-dark" routerLink="/public">Inicio</a>
+        </li>
+       
+        <li class="nav-item">
+          <a class="nav-link text-dark" routerLink="/public/jobs">Blog</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark" href="#about">Sobre mí</a>
+          <a class="nav-link text-dark" routerLink="/public/projects">Proyectos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark" href="#jobs">Empleo</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="#proyects">Proyectos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="#contact">Contacto</a>
+          <a class="nav-link text-dark" routerLink="/public/contact">Contacto</a>
         </li>
       </ul>
-      <a href="assets/cv.pdf" class="btn btn-outline-secondary ms-3" download>Descargar CV</a>
+      <a href="assets/cv/cv-jean-carlos-rodriguez.pdf" class="btn btn-outline-secondary ms-3" download>Descargar CV</a>
     </div>
   </div>
    
   <!-- Sección desplegable -->
   @if (s_isDropdownOpen()) {
     <div class="dropdown-menu middle-z-index set-height-100 w-100 animate-slide-down pt-5">
-      <a class="dropdown-item hover:bg-blue-50 transition-colors duration-200" href="#home">
+      <a class="dropdown-item hover:bg-blue-50 transition-colors duration-200" routerLink="/" >
         <mat-icon class="me-2">home</mat-icon>Inicio
       </a>
-      <a class="dropdown-item hover:bg-blue-50 transition-colors duration-200" href="#about">
-        <mat-icon class="me-2">person</mat-icon>Sobre mí
+      <a class="dropdown-item hover:bg-blue-50 transition-colors duration-200" routerLink="/public/blog">
+        <mat-icon class="me-2">article</mat-icon>Blog
       </a>
-      <a class="dropdown-item hover:bg-blue-50 transition-colors duration-200" href="#jobs">
-        <mat-icon class="me-2">work</mat-icon>Empleo
-      </a>
-      <a class="dropdown-item hover:bg-blue-50 transition-colors duration-200" href="#proyects">
+      <a class="dropdown-item hover:bg-blue-50 transition-colors duration-200" routerLink="/public/projects">
         <mat-icon class="me-2">folder</mat-icon>Proyectos
       </a>
-      <a class="dropdown-item hover:bg-blue-50 transition-colors duration-200 text-uppercase" href="#contact">
+      <a class="dropdown-item hover:bg-blue-50 transition-colors duration-200 text-uppercase" routerLink="/public/contact">
         <mat-icon class="me-2">email</mat-icon>Contacto
       </a>
     </div>

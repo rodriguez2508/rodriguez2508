@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
+import { Router, RouterModule } from '@angular/router';
 import { CV_DATA } from '@static-data/cv-data';
 
 @Component({
@@ -7,10 +8,13 @@ import { CV_DATA } from '@static-data/cv-data';
   templateUrl: './header.html',
   styleUrls: ['./header.scss'],
   imports:[
+    RouterModule,
     MatIcon
   ]
 })
 export class Header {
+
+  private router = inject(Router)
   cvData = CV_DATA;
 
   // Variables globales
@@ -37,5 +41,9 @@ export class Header {
     
     this.s_isDropdownOpen.set(!this.s_isDropdownOpen());
     
+  }
+
+  navigateTo(route: string = ''): void {
+    this.router.navigate([route], {});
   }
 }

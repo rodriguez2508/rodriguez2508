@@ -1,8 +1,13 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnInit } from '@angular/core';
+import { afterNextRender, AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import gsap from 'gsap';
+import { TextPlugin } from 'gsap/TextPlugin';
 
 import { CV_DATA } from '@static-data/cv-data';
+import { ParticlesService } from '@services/particles/particles.service';
+
+
+
 
 @Component({
   selector: 'app-home',
@@ -12,22 +17,35 @@ import { CV_DATA } from '@static-data/cv-data';
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
+
+  private particlesService = inject(ParticlesService);
 
   data = CV_DATA; // Asigna los datos personales a una propiedad
 
 
   constructor(
     private elementRef: ElementRef
-  ) { }
+  ) {
+    afterNextRender(() => {
+
+      // Registrar el plugin
+      gsap.registerPlugin(TextPlugin);
+
+      this.initAnimations();
+    });
+  }
 
   ngOnInit(): void {
   }
 
   ngAfterViewInit(): void {
-    this.initAnimations();
-  }
 
+    this.particlesService.init(); // Inicializar las partículas
+  }
+  ngOnDestroy(): void {
+    this.particlesService.destroy(); // Destruir las partículas al salir del componente
+  }
   /**
    * Initializes animations for the "About" section by observing elements for visibility.
    * When the title becomes visible within the viewport, a GSAP animation is triggered
@@ -50,21 +68,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
       });
     }
 
-    // Observar las tarjetas
-    // const cards = jobsSection.querySelectorAll('.card');
-    // cards.forEach((card: HTMLElement, index: number) => {
-    //   this.observeElement(card, () => {
-    //     gsap.from(card, {
-    //       duration: 1,
-    //       y: 50,
-    //       opacity: 0,
-    //       // delay: index * 0.3, // Retraso entre cada tarjeta
-    //       ease: 'power2.out'
-    //     });
-    //   });
-    // });
+    this.initTypewriterEffect();
   }
-  
+
   private observeElement(element: HTMLElement, callback: () => void): void {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -76,5 +82,34 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }, { threshold: 0.5 }); // Umbral de visibilidad (50%)
 
     observer.observe(element); // Comenzar a observar el elemento
+  }
+
+  private initTypewriterEffect(): void {
+    const typewriterElement = this.elementRef.nativeElement.querySelector('.typewriter-gsap span');
+    const text = 'Linki como Plataforma, no como Intermediario';
+    const duration = 5; // Duración de la animación en segundos
+
+    // Borra el texto inicial
+    typewriterElement.textContent = '';
+
+    // Escribe el texto letra por letra
+    gsap.to(typewriterElement, {
+      duration: duration,
+      text: text,
+      ease: 'none',
+      onComplete: () => {
+        // Borra el texto letra por letra
+        gsap.to(typewriterElement, {
+          duration: duration,
+          text: '',
+          ease: 'none',
+          delay: 10, // Espera 1 segundo antes de borrar
+          onComplete: () => {
+            // Repite el ciclo
+            this.initTypewriterEffect();
+          }
+        });
+      }
+    });
   }
 }

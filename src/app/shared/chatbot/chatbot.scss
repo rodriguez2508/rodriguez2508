@@ -1,0 +1,122 @@
+/* Botón Flotante */
+.chatbot-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  background-color: #333; /* Fondo oscuro */
+  color: #fff; /* Texto blanco */
+
+  &:hover {
+    background-color: #555; /* Color más claro al hacer hover */
+  }
+
+  /* Efecto de rotación */
+  &.rotate {
+    transform: rotate(360deg); /* Gira 360 grados */
+  }
+}
+
+/* Ventana del Chatbot */
+.chatbot-window {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 300px;
+  background-color: #333; /* Fondo oscuro */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+
+  &.open {
+    display: flex;
+  }
+}
+
+/* Encabezado del Chatbot */
+.chatbot-header {
+  background-color: #444; /* Fondo más claro para el encabezado */
+  color: #fff; /* Texto blanco */
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .close-button {
+    background: none;
+    border: none;
+    color: #fff; /* Texto blanco */
+    cursor: pointer;
+    font-size: 18px;
+  }
+}
+
+/* Área de Mensajes */
+.chat-messages {
+  flex-grow: 1;
+  padding: 10px;
+  overflow-y: auto;
+  background-color: #2a2a2a; /* Fondo oscuro para los mensajes */
+
+  .message {
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 8px;
+
+    &.user-message {
+      background-color: #555; /* Fondo oscuro para mensajes del usuario */
+      color: #fff; /* Texto blanco */
+      align-self: flex-end;
+    }
+
+    &.bot-message {
+      background-color: #444; /* Fondo oscuro para mensajes del bot */
+      color: #fff; /* Texto blanco */
+      align-self: flex-start;
+    }
+  }
+}
+
+/* Input y Botón de Enviar */
+.chat-input {
+  display: flex;
+  padding: 10px;
+  background-color: #333; /* Fondo oscuro */
+  border-top: 1px solid #444; /* Borde más claro */
+
+  input {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #444; /* Borde más claro */
+    border-radius: 4px;
+    margin-right: 8px;
+    background-color: #2a2a2a; /* Fondo oscuro */
+    color: #fff; /* Texto blanco */
+
+    &::placeholder {
+      color: #888; /* Color del placeholder */
+    }
+  }
+
+  button {
+    background-color: #444; /* Fondo oscuro */
+    color: #fff; /* Texto blanco */
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #555; /* Color más claro al hacer hover */
+    }
+  }
+}

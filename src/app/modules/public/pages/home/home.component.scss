@@ -75,6 +75,56 @@
 
     img {
       border-color: rgba(255, 255, 255, 0.5); // Borde blanco semi-transparente
+     
     }
   }
 }
+.web-mockup {
+  max-width: 360px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  background: #fff;
+}
+
+/* Barra tipo navegador */
+.mockup-header {
+  background: #f1f1f1;
+  border-bottom: 1px solid #ddd;
+}
+.mockup-img{
+  height: 62dvh;
+  object-fit: cover;
+  transition: transform 0.3s ease; /* Transición suave para el zoom */
+  display: block; /* Asegura que la imagen se comporte como un bloque */
+}
+ 
+
+.mockup-body:hover .mockup-img {
+  transform: scale(1.05); /* Aumenta el tamaño de la imagen en un 5% */
+}
+
+.mockup-header .dot {
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.mockup-header .dot.red { background: #ff5f57; }
+.mockup-header .dot.yellow { background: #ffbd2e; }
+.mockup-header .dot.green { background: #28c840; }
+
+/* Cuerpo */
+.mockup-body {
+  position: relative;
+}
+
+.mockup-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.6);
+}
+

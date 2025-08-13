@@ -12,8 +12,7 @@ import Lenis from 'lenis';
 import { LoadingService } from '@services/loading/loading.service';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
+  selector: 'app-root', 
   imports: [
     RouterOutlet,
     MatToolbarModule,

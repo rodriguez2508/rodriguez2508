@@ -1,0 +1,29 @@
+<!-- Botón Flotante -->
+<button class="bg-dark text-light chatbot-button higth-z-index position-" [class.rotate]="isChatOpen" (click)="toggleChat()">
+  <mat-icon>chat</mat-icon> <!-- Icono de chat de Material -->
+</button>
+<!-- Ventana del Chatbot -->
+<div class="chatbot-window higth-z-index" [class.open]="isChatOpen">
+  <!-- Encabezado del Chatbot -->
+  <div class="chatbot-header">
+    <h3>Chatbot</h3>
+    <button class="close-button" (click)="toggleChat()">
+      <mat-icon>close</mat-icon> <!-- Icono de cerrar de Material -->
+    </button>
+  </div>
+
+  <!-- Área de Mensajes -->
+  <div class="chat-messages">
+    <div class="message bot-message">
+      <p><strong>Chatbot:</strong> ¡Hola! ¿En qué puedo ayudarte hoy?</p>
+    </div>
+  </div>
+
+  <!-- Input y Botón de Enviar -->
+  <div class="chat-input">
+    <input type="text" placeholder="Escribe tu mensaje..." (ngModel)="userMessage">
+    <button (click)="sendMessage()">
+      <mat-icon>send</mat-icon> <!-- Icono de enviar de Material -->
+    </button>
+  </div>
+</div>

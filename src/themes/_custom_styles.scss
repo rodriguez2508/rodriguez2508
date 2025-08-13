@@ -458,3 +458,33 @@ screen and (min-width: 1024px) {
 .spacer {
   flex: 1 1 auto;
 }
+.typewriter {
+  overflow: hidden;
+  border-right: 0.15em solid #333;
+  white-space: nowrap;
+  letter-spacing: 0.1em;
+  animation: 
+    typing 15s infinite,
+    blink-caret 0.8s step-end infinite;
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #333;
+  }
+}

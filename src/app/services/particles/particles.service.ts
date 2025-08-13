@@ -1,55 +1,10 @@
 import { Injectable, ElementRef, Renderer2, RendererFactory2, afterNextRender, runInInjectionContext, Injector, inject } from '@angular/core';
 
-export class Particle {
-  x: number = 0;
-  y: number = 0;
-  vx: number = 0;
-  vy: number = 0;
-  size: number = 0;
-
-  constructor() {
-
-    afterNextRender(() => {
-
-      this.x = Math.random() * window.innerWidth;
-      this.y = Math.random() * window.innerHeight;
-      this.vx = (Math.random() - 0.5) * 1;
-      this.vy = (Math.random() - 0.5) * 1;
-      this.size = Math.random() * 3 + 2;
-    });
-  }
-
-  update(): void {
-    this.x += this.vx;
-    this.y += this.vy;
-
-    // Rebote en los bordes
-    if (this.x < 0 || this.x > window.innerWidth) this.vx *= -1;
-    if (this.y < 0 || this.y > window.innerHeight) this.vy *= -1;
-  }
-
-  draw(ctx: CanvasRenderingContext2D): void {
-    // Configurar shadow más sutil
-    ctx.shadowColor = 'rgba(100, 255, 218, 0.1)';
-    ctx.shadowBlur = 5;
-
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(100, 255, 218, 0.3)'; // Más opaco -> más sutil
-    ctx.fill();
-
-    // Resetear shadow
-    ctx.shadowColor = 'transparent';
-    ctx.shadowBlur = 0;
-  }
-}
-
 @Injectable({
   providedIn: 'root'
 })
 export class ParticlesService {
-
-  private injector = inject(Injector)
+  private injector = inject(Injector);
 
   private renderer!: Renderer2;
   private canvas?: HTMLCanvasElement;
@@ -59,28 +14,27 @@ export class ParticlesService {
   private isInitialized = false;
 
   constructor(rendererFactory: RendererFactory2) {
-
-    afterNextRender(() => {
-      this.renderer = rendererFactory.createRenderer(null, null);
+    runInInjectionContext(this.injector, () => {
+      afterNextRender(() => {
+        this.renderer = rendererFactory.createRenderer(null, null);
+      });
     });
   }
 
   init(): void {
     if (this.isInitialized) return;
 
-
     runInInjectionContext(this.injector, () => {
       afterNextRender(() => {
         console.log('Inicializando partículas globales...');
         this.createCanvas();
         this.initParticles();
-        // this.startAnimation();
+        this.startAnimation();
         this.bindResizeEvent();
         this.isInitialized = true;
         console.log('Partículas inicializadas:', this.particles.length, 'partículas creadas');
       });
     });
-
   }
 
   destroy(): void {
@@ -104,12 +58,12 @@ export class ParticlesService {
     this.renderer.addClass(this.canvas, 'global-particles-canvas');
 
     // Estilos para el canvas
-    this.renderer.setStyle(this.canvas, 'position', 'absolute');
+    this.renderer.setStyle(this.canvas, 'position', 'fixed'); // Cambiado a 'fixed' para que no se desplace con el scroll
     this.renderer.setStyle(this.canvas, 'top', '0');
     this.renderer.setStyle(this.canvas, 'left', '0');
     this.renderer.setStyle(this.canvas, 'width', '100%');
     this.renderer.setStyle(this.canvas, 'height', '100%');
-    this.renderer.setStyle(this.canvas, 'z-index', '0');
+    this.renderer.setStyle(this.canvas, 'z-index', '0'); 
     this.renderer.setStyle(this.canvas, 'pointer-events', 'none');
 
     this.renderer.appendChild(document.body, this.canvas);
@@ -125,7 +79,7 @@ export class ParticlesService {
   private initParticles(): void {
     // Crear más partículas para que se vean bien en toda la página
     for (let i = 0; i < 80; i++) {
-      this.particles.push(new Particle());
+      this.particles.push(new Particle(this.injector));
     }
   }
 
@@ -179,5 +133,49 @@ export class ParticlesService {
         this.canvas.height = window.innerHeight;
       }
     });
+  }
+}
+
+export class Particle {
+  x: number = 0;
+  y: number = 0;
+  vx: number = 0;
+  vy: number = 0;
+  size: number = 0;
+
+  constructor(private injector: Injector) {
+    runInInjectionContext(this.injector, () => {
+      afterNextRender(() => {
+        this.x = Math.random() * window.innerWidth;
+        this.y = Math.random() * window.innerHeight;
+        this.vx = (Math.random() - 0.5) * 1;
+        this.vy = (Math.random() - 0.5) * 1;
+        this.size = Math.random() * 3 + 2;
+      });
+    });
+  }
+
+  update(): void {
+    this.x += this.vx;
+    this.y += this.vy;
+
+    // Rebote en los bordes
+    if (this.x < 0 || this.x > window.innerWidth) this.vx *= -1;
+    if (this.y < 0 || this.y > window.innerHeight) this.vy *= -1;
+  }
+
+  draw(ctx: CanvasRenderingContext2D): void {
+    // Configurar shadow más sutil
+    ctx.shadowColor = 'rgba(100, 255, 218, 0.1)';
+    ctx.shadowBlur = 5;
+
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(100, 255, 218, 0.3)'; // Más opaco -> más sutil
+    ctx.fill();
+
+    // Resetear shadow
+    ctx.shadowColor = 'transparent';
+    ctx.shadowBlur = 0;
   }
 }

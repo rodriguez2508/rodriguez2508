@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, afterNextRender } from '@angular/core';
 import gsap from 'gsap';
 
 
@@ -14,13 +14,16 @@ export class AboutComponent implements OnInit, AfterViewInit {
 
   constructor(
     private elementRef: ElementRef
-  ) { }
+  ) { 
+    afterNextRender(() => {
+      this.initAnimations();
+    });
+  }
 
   ngOnInit(): void {
   }
 
   ngAfterViewInit(): void {
-    this.initAnimations();
   }
 
 
