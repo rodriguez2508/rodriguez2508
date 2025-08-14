@@ -1,0 +1,490 @@
+@use "./variables" as *;
+
+@supports (-webkit-overflow-scrolling: touch) {
+
+  /* CSS específico para iOS */
+  body {
+    padding-top: env(safe-area-inset-top);
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-top: constant(safe-area-inset-top);
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+* {
+  font-family: "Baloo Bhai 2", sans-serif;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+
+  -webkit-overflow-scrolling: touch;
+  /* Mejora scroll en iOS */
+  touch-action: manipulation;
+  /* Previene el zoom en dispositivos táctiles */
+}
+
+html,
+body {
+  height: 100dvh;
+  overflow: hidden;
+  background-color: var(--primary-color) !important;
+  color: var(--text-color);
+  margin: 0;
+  user-select: none;
+}
+
+
+
+* {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+
+  -webkit-overflow-scrolling: touch;
+  /* Mejora scroll en iOS */
+  touch-action: manipulation;
+  /* Previene el zoom en dispositivos táctiles */
+
+  -webkit-tap-highlight-color: transparent !important;
+  outline: none !important;
+}
+
+
+*:focus,
+*:active {
+  outline: none;
+}
+
+
+@function set-height($height) {
+  @return #{$height}dvh; // Retorna la altura en vh
+}
+
+// Creación de clases con alturas predefinidas
+@for $i from 1 through 100 {
+  .set-height-#{$i} {
+    height: set-height($i);
+    overflow: hidden;
+  }
+}
+
+// Creación de clases con alturas predefinidas
+@for $i from 1 through 100 {
+  .set-height-s-#{$i} {
+    height: set-height($i);
+    overflow-y: auto;
+    /* Agrega un scroll vertical si es necesario */
+    overflow-x: hidden;
+    /* Agrega un scroll vertical si es necesario */
+  }
+}
+
+@function set-px-img($height) {
+  @return #{$height}dvh; // Retorna la altura en vh
+}
+
+// tamaño de imagenes con alturas predefinidas
+@for $i from 5 through 100 {
+  .set-img-logo-#{$i} {
+    width: set-px-img($i);
+    border-radius: 10px;
+  }
+}
+
+.higth-z-index {
+  z-index: 10000 !important;
+  /* Elije un valor grande que supere el z-index de tu Navbar/Header */
+}
+
+// ---------------------------------
+// ---------------------------------
+// /* scroll fondo */
+// ---------------------------------
+// ---------------------------------
+@media (min-width: 768px) {
+
+  /* Estilos para pantallas de PC */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background-color: rgb(163, 160, 160);
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb:horizontal {
+    background-clip: padding-box;
+    height: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:vertical {
+    background-clip: padding-box;
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-corner,
+  ::-webkit-resizer {
+    background-color: transparent;
+  }
+}
+
+// ---------------------------------
+// ---------------------------------
+// /* scroll fondo */
+// ---------------------------------
+// ---------------------------------
+.middle-z-index {
+  z-index: 1031 !important;
+  /* Elije un valor grande que supere el z-index de tu Navbar/Header */
+}
+
+.small-z-index {
+  z-index: 131 !important;
+  /* Elije un valor grande que supere el z-index de tu Navbar/Header */
+}
+
+// ---------------------------------
+// ---------------------------------
+// /* scroll fondo solo para PC */
+// ---------------------------------
+// ---------------------------------
+@media screen and (min-width: 500px) and (max-width: 1023px),
+screen and (min-width: 1024px) {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background-color: rgb(163, 160, 160);
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb:horizontal {
+    background-clip: padding-box;
+    height: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:vertical {
+    background-clip: padding-box;
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-corner,
+  ::-webkit-resizer {
+    background-color: transparent;
+  }
+}
+
+// ---------------------------------
+// ---------------------------------
+// /* scroll fondo */
+// ---------------------------------
+// ---------------------------------
+
+
+
+@function set-mt($vh) {
+  @return #{$vh}dvh; // Retorna margen en vh
+}
+
+// margen superior
+@for $i from 5 through 15 {
+  .mt-#{$i} {
+    margin-top: set-mt($i);
+  }
+}
+
+// estilos para controlar el tamaño de los iconos con mat-#
+@mixin mat($size) {
+  height: fit-content !important;
+  width: fit-content !important;
+  font-size: #{$size}px;
+}
+
+@for $i from 1 through 20 {
+
+  // Puedes cambiar el rango según tus necesidades
+  .mat-#{$i} {
+    @include mat($i);
+  }
+}
+
+//Estilo para hacer el efecto skeleton
+.skeleton {
+  background-color: #333;
+  /* Un gris oscuro, similar a --border-color o --chip-background */
+  border-radius: 4px;
+  /* Bordes redondeados suaves */
+  position: relative;
+  overflow: hidden;
+  /* Para posibles efectos de brillo */
+  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+
+
+/* Success Snackbar */
+.success-snackbar {
+  --mdc-snackbar-container-color: #1E1E1E;
+  /* Verde oscuro de Material Design */
+  --mdc-snackbar-supporting-text-color: #E8EAED;
+  /* Texto claro para contraste */
+  --mat-snack-bar-button-color: #A5D6A7;
+  /* Verde claro para botones */
+  --mat-snack-bar-button-background-color: rgba(165, 214, 167, 0.2);
+  /* Fondo botón */
+  --mat-app-inverse-surface: #2E7D32;
+  /* Verde más oscuro para bordes */
+
+  /* Paleta de colores */
+  --success-dark: #2E7D32;
+  /* Verde Material Design 700 */
+  --success-light: #81C784;
+  /* Verde Material Design 300 */
+
+  /* Degradado oscuro */
+  background: linear-gradient(135deg,
+      var(--mdc-snackbar-container-color) 0%,
+      var(--success-light) 20%) !important;
+
+  /* Efectos visuales */
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  border-left: 4px solid var(--success-dark);
+  backdrop-filter: blur(3px);
+  /* Efecto vidrio esmerilado */
+  --mdc-snackbar-container-shape: 8px;
+  /* Bordes redondeados Material Design */
+
+  /* Animación */
+  animation: pulse-success 2.5s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes pulse-success {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.95;
+    transform: scale(1.01);
+  }
+}
+
+.success-snackbar .mat-mdc-snack-bar-label {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--mdc-snackbar-supporting-text-color);
+  padding-top: 8px;
+}
+
+.success-snackbar .mat-mdc-snack-bar-actions:hover {
+  background-color: rgba(165, 214, 167, 0.1);
+}
+
+/* Error Snackbar */
+.error-snackbar {
+  --mdc-snackbar-container-color: #1E1E1E;
+  /* Rojo oscuro Material Design */
+  --mdc-snackbar-supporting-text-color: #F5F5F5;
+  /* Texto claro */
+  --mat-snack-bar-button-color: #EF5350;
+  /* Rojo claro para botones */
+  --mat-snack-bar-button-background-color: rgba(239, 83, 80, 0.2);
+  /* Fondo botón */
+  --mat-app-inverse-surface: #D32F2F;
+  /* Rojo Material Design 700 */
+
+  /* Paleta de colores */
+  --error-dark: #D32F2F;
+  /* Rojo Material Design 700 */
+  --error-light: #EF5350;
+  /* Rojo Material Design 400 */
+
+  /* Degradado oscuro */
+  background: linear-gradient(135deg,
+      var(--mdc-snackbar-container-color) 0%,
+      var(--error-light) 20%) !important;
+
+  /* Tipografía */
+  --mdc-typography-body2-font-family: 'Roboto', sans-serif;
+  --mdc-typography-body2-font-weight: 400;
+
+  /* Efectos visuales */
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  border-left: 4px solid var(--error-dark);
+  --mdc-snackbar-container-shape: 8px;
+
+  /* Animación */
+  animation: pulse-error 2.5s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes pulse-error {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.95;
+    transform: scale(1.01);
+  }
+}
+
+.error-snackbar .mat-mdc-snack-bar-label {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--mdc-snackbar-supporting-text-color);
+  padding-top: 8px;
+}
+
+.error-snackbar .mat-mdc-snack-bar-actions:hover {
+  background-color: rgba(239, 83, 80, 0.1);
+}
+
+/* Warning Snackbar */
+.warning-snackbar {
+  --mdc-snackbar-container-color: #1E1E1E;
+  /* Ámbar oscuro Material Design */
+  --mdc-snackbar-supporting-text-color: #E8EAED;
+  /* Texto claro */
+  --mat-snack-bar-button-color: #FFCA28;
+  /* Ámbar claro para botones */
+  --mat-snack-bar-button-background-color: rgba(255, 202, 40, 0.2);
+  /* Fondo botón */
+  --mat-app-inverse-surface: #FF8F00;
+  /* Ámbar Material Design 700 */
+
+  /* Paleta de colores */
+  --warning-dark: #FF8F00;
+  /* Ámbar Material Design 700 */
+  --warning-light: #FFCA28;
+  /* Ámbar Material Design 300 */
+
+  /* Degradado oscuro */
+  background: linear-gradient(135deg,
+      var(--mdc-snackbar-container-color) 0%,
+      var(--warning-light) 20%) !important;
+
+  /* Tipografía */
+  --mdc-typography-body2-font-family: 'Roboto', sans-serif;
+  --mdc-typography-body2-font-weight: 400;
+
+  /* Efectos visuales */
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  border-left: 4px solid var(--warning-dark);
+  --mdc-snackbar-container-shape: 8px;
+
+  /* Animación */
+  animation: pulse-warning 3s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes pulse-warning {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  50% {
+    opacity: 0.95;
+    transform: scale(1.005);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.warning-snackbar .mat-mdc-snack-bar-label {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--mdc-snackbar-supporting-text-color);
+  padding-top: 8px;
+}
+
+.warning-snackbar .mat-mdc-snack-bar-actions:hover {
+  background-color: rgba(255, 202, 40, 0.1);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+.typewriter {
+  overflow: hidden;
+  border-right: 0.15em solid #333;
+  white-space: nowrap;
+  letter-spacing: 0.1em;
+  animation: 
+    typing 15s infinite,
+    blink-caret 0.8s step-end infinite;
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #333;
+  }
+}

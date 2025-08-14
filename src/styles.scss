@@ -1,0 +1,8 @@
+@use "@angular/material" as mat;
+@use "sass:map";
+
+// Importar el tema
+@use "./themes/_theme-colors" as theme-colors;
+@use "./themes/_custom_styles" as *;
+
+@use "tailwindcss"; 

@@ -1,0 +1,21 @@
+<div class="flex flex-col min-h-screen overflow-auto"> <!-- Añade overflow-auto -->
+    <!-- Header -->
+    <mat-card-header class="w3-row w3-col">
+        <app-header></app-header>
+    </mat-card-header>
+
+    <!-- Contenido Principal -->
+    <mat-card-content class="flex-grow mt-16 set-height-s-100 d-block">
+        
+        <router-outlet />
+
+    </mat-card-content>
+
+    <!-- Footer -->
+    <!-- <mat-card-content class="w3-row w3-col">
+        <app-footer></app-footer>
+    </mat-card-content> -->
+
+    <app-chatbot></app-chatbot>
+    
+</div>

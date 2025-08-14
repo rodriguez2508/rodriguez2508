@@ -1,0 +1,20 @@
+@use '@angular/material' as mat;
+
+// Definir paletas de colores
+$nature-primary: mat.define-palette(mat.$green-palette);
+$nature-accent: mat.define-palette(mat.$blue-palette);
+$nature-warn: mat.define-palette(mat.$red-palette);
+
+// Crear el tema
+$nature-theme: mat.define-theme((
+  color: (
+    primary: $nature-primary,
+    accent: $nature-accent,
+    warn: $nature-warn,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+
+// Aplicar el tema globalmente
+@include mat.all-component-themes($nature-theme);

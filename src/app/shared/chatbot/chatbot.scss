@@ -1,0 +1,75 @@
+/* Botón Flotante */
+.chatbot-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  font-size: 26px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &.rotate {
+    transform: rotate(360deg);
+  }
+}
+
+/* Ventana del Chatbot */
+.chatbot-window {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 520px;
+  max-height: 500px;
+  background-color: #222;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  animation: fadeIn 0.3s ease forwards;
+
+  &.open {
+    display: flex;
+  }
+
+  @media (max-width: 576px) {
+    width: 100%;
+    max-width: 100%;
+    height: 90vh;
+    max-height: 100vh;
+    bottom: 0;
+    right: 0;
+    border-radius: 0;
+  }
+}
+
+/* Área de Mensajes */
+.chat-messages {
+  background: linear-gradient(to bottom, #1e1e1e, #2a2a2a);
+
+  @media (max-width: 576px) {
+    height: calc(100vh - 120px); // Ajusta según altura de header + input
+  }
+}
+
+/* Animación Fade In */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mensaje de escritura */
+.typing-msg {
+  opacity: 1;
+  /* GSAP controla la opacidad */
+}

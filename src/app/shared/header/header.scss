@@ -1,0 +1,95 @@
+@media (max-width: 991.98px) {
+  .d-none.d-lg-flex {
+    display: none !important;
+  }
+}
+
+/* Ajustar el buscador y la foto de perfil en vistas pequeñas y medianas */
+@media (max-width: 991.98px) {
+  .navbar .container-fluid {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .navbar .d-flex {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .navbar .ms-auto {
+    margin-left: auto !important;
+  }
+}
+.dropdown-menu {
+  display: block; /* Asegura que el menú no esté oculto por defecto */
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px; /* Bordes más redondeados */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sombra más suave */
+  z-index: 1000; /* Asegura que esté encima de todo */
+  opacity: 0; /* Inicialmente oculto */
+  visibility: hidden; /* Inicialmente oculto */
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  transform: translateY(-10px); /* Efecto de deslizamiento */
+  width: 100%; /* Ancho completo */
+  
+}
+
+/* Mostrar el menú cuando isDropdownOpen es true */
+.dropdown-menu.middle-z-index.set-height-100 {
+  opacity: 1;
+  visibility: visible;
+}
+ 
+
+/* Estilos para la imagen de perfil */
+.profile-image {
+  cursor: pointer; /* Cambia el cursor al pasar sobre la imagen */
+}
+
+/* Animación de deslizamiento hacia abajo */
+@keyframes slide-down {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-down {
+  animation: slide-down 0.3s ease-out;
+}
+
+/* Estilos para los elementos del menú */
+.dropdown-item {
+  @apply text-dark hover:bg-blue-50 transition-colors duration-200;
+  padding: 0.75rem 1.5rem;
+}
+ 
+
+/* Estilos para la imagen de perfil */
+.profile-image {
+  cursor: pointer;
+}
+
+/* Ajustar el diseño en vista móvil */
+@media (max-width: 991.98px) {
+  .navbar .container-fluid {
+    flex-direction: column;
+  }
+
+  .navbar .d-flex {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .navbar .d-none.d-lg-flex {
+    display: none !important;
+  }
+}
