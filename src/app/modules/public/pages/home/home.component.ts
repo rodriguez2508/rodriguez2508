@@ -19,14 +19,18 @@ import { ParticlesService } from '@services/particles/particles.service';
 })
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
+  /* 
+  *
+  * @INJECT
+  *
+  */
   private particlesService = inject(ParticlesService);
+  private elementRef = inject(ElementRef);
 
   data = CV_DATA; // Asigna los datos personales a una propiedad
 
 
-  constructor(
-    private elementRef: ElementRef
-  ) {
+  constructor() {
     afterNextRender(() => {
 
       // Registrar el plugin
@@ -70,6 +74,14 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.initTypewriterEffect();
   }
+
+  /**
+   * Observes a given DOM element and executes a callback function when the element
+   * becomes visible in the viewport. The observation stops after the callback is triggered.
+   *
+   * @param element - The DOM element to be observed for visibility.
+   * @param callback - The function to be executed when the element is visible.
+   */
 
   private observeElement(element: HTMLElement, callback: () => void): void {
     const observer = new IntersectionObserver((entries) => {

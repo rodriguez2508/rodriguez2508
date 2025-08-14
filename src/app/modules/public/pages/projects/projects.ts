@@ -1,13 +1,16 @@
 import { afterNextRender, AfterViewInit, Component, ElementRef, inject, OnDestroy, OnInit } from '@angular/core';
 import { CV_DATA } from '@static-data/cv-data';
 
+import gsap from 'gsap';
+import TextPlugin from 'gsap/TextPlugin';
+
 @Component({
-  selector: 'app-blog',
+  selector: 'app-projects',
   imports: [],
-  templateUrl: './blog.html',
-  styleUrl: './blog.scss'
+  templateUrl: './projects.html',
+  styleUrl: './projects.scss'
 })
-export class Blog implements OnInit, AfterViewInit, OnDestroy {
+export class Projects implements OnInit, AfterViewInit, OnDestroy {
 
 
   /* 
@@ -21,8 +24,7 @@ export class Blog implements OnInit, AfterViewInit, OnDestroy {
   data = CV_DATA; // Asigna los datos personales a una propiedad
   constructor() {
     afterNextRender(() => {
-
-      // Registrar el plugin
+ 
       gsap.registerPlugin(TextPlugin);
 
       this.initAnimations();
@@ -33,8 +35,7 @@ export class Blog implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-
-     
+ 
   }
   ngOnDestroy(): void {
     
@@ -47,23 +48,21 @@ export class Blog implements OnInit, AfterViewInit, OnDestroy {
    * is commented out, but can be enabled to animate cards similarly.
    */
    private initAnimations(): void {
-    const jobsSection = this.elementRef.nativeElement;
+    const section = this.elementRef.nativeElement;
 
-    // Observar el título
-    const title = jobsSection.querySelector('.sm-title');
-    if (title) {
-      this.observeElement(title, () => {
-        gsap.from(title, {
-          duration: 1,
-          y: 50,
+    const cards = section.querySelectorAll('.project-card');
+    cards.forEach((card: HTMLElement, index: number) => {
+      this.observeElement(card, () => {
+        gsap.from(card, {
+          duration: 0.8,
+          y: 30,
           opacity: 0,
+          delay: index * 0.1,
           ease: 'power2.out'
         });
       });
-    }
- 
+    });
   }
-
 
   /**
    * Observes a given DOM element and executes a callback function when the element
@@ -72,18 +71,33 @@ export class Blog implements OnInit, AfterViewInit, OnDestroy {
    * @param element - The DOM element to be observed for visibility.
    * @param callback - The function to be executed when the element is visible.
    */
-
   private observeElement(element: HTMLElement, callback: () => void): void {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          callback(); // Ejecutar la animación cuando el elemento es visible
-          observer.unobserve(element); // Dejar de observar después de la animación
+          callback();
+          observer.unobserve(element);
         }
       });
-    }, { threshold: 0.5 }); // Umbral de visibilidad (50%)
+    }, { threshold: 0.2 });
 
-    observer.observe(element); // Comenzar a observar el elemento
+    observer.observe(element);
   }
 
+/**
+ * Truncates the given description to a specified maximum length, appending
+ * an ellipsis ("...") if the original description exceeds this length.
+ *
+ * @param description - The string to be truncated.
+ * @param maxLength - The maximum allowed length for the description.
+ * @returns The truncated string with an ellipsis if it was longer than the maxLength,
+ *          otherwise returns the original string.
+ */
+
+  truncateDescription(description: string, maxLength: number): string {
+    if (description.length > maxLength) {
+      return description.substring(0, maxLength) + '...';
+    }
+    return description;
+  }
 }

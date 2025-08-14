@@ -19,6 +19,13 @@ const routes: Routes = [
         data: { animationsType: 'ALL' }
       },
       {
+        path: 'projects',
+        loadComponent: () =>
+          import('./pages/projects/projects').then((m) => m.Projects),
+        title: 'CV | Proyectos',
+        data: { animationsType: 'ALL' }
+      },
+      {
         path: 'contact',
         loadComponent: () =>
           import('./pages/contact/contact.component').then((m) => m.ContactComponent),

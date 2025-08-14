@@ -1,29 +1,51 @@
 <!-- Botón Flotante -->
-<button class="bg-dark text-light chatbot-button higth-z-index position-" [class.rotate]="isChatOpen" (click)="toggleChat()">
-  <mat-icon>chat</mat-icon> <!-- Icono de chat de Material -->
+<button class="btn bg-dark text-light chatbot-button higth-z-index rounded-circle d-flex align-items-center justify-content-center" [class.rotate]="isChatOpen()" (click)="toggleChat()">
+  <mat-icon>chat</mat-icon>
 </button>
+
 <!-- Ventana del Chatbot -->
-<div class="chatbot-window higth-z-index" [class.open]="isChatOpen">
-  <!-- Encabezado del Chatbot -->
-  <div class="chatbot-header">
-    <h3>Chatbot</h3>
-    <button class="close-button" (click)="toggleChat()">
-      <mat-icon>close</mat-icon> <!-- Icono de cerrar de Material -->
+<div class="chatbot-window higth-z-index shadow-lg rounded-2 set-height-65 " [class.open]="isChatOpen()">
+  <!-- Encabezado -->
+  <div class="chatbot-header bg-dark text-light d-flex justify-content-between align-items-center p-2">
+    <h3 class="m-0">Chatbot</h3>
+    <button class="btn-close text-danger" (click)="toggleChat()">
+      <mat-icon>close</mat-icon>
     </button>
   </div>
 
   <!-- Área de Mensajes -->
-  <div class="chat-messages">
-    <div class="message bot-message">
-      <p><strong>Chatbot:</strong> ¡Hola! ¿En qué puedo ayudarte hoy?</p>
-    </div>
+  <div class="chat-messages flex-grow-1 overflow-auto p-3 bg-gradient">
+    @for (message of messages(); track message.id) {
+      @if (message.options) {
+        <div class="d-flex flex-wrap justify-content-start mb-3">
+          @for (opt of message.options; track opt.nextId) {
+            <button mat-raised-button color="primary" class="text-light me-2 mb-2" (click)="handleOptionClick(opt.nextId)">
+              {{ opt.label }}
+            </button>
+          }
+        </div>
+      } @else {
+        <div [class]="'d-flex mb-3 ' + (message.from === 'bot' ? 'justify-content-start' : 'justify-content-end')">
+          <div class="card" [class.bg-dark]="message.from === 'bot'" [class.text-light]="message.from === 'bot'" [class.bg-secondary]="message.from !== 'bot'" [class.text-white]="message.from !== 'bot'" style="max-width: 85%;">
+            <div class="card-header d-flex align-items-center gap-2 p-2">
+              <mat-icon [fontIcon]="message.from === 'bot' ? 'smart_toy' : 'person'"></mat-icon>
+              <strong>{{ message.from === 'bot' ? 'Chatbot' : 'Tú' }}</strong>
+            </div>
+            <div class="card-body p-2">
+              <span class="chat-message" [innerHTML]="(message.text ?? '') | safeHtml"></span>
+
+            </div>
+          </div>
+        </div>
+      }
+    }
   </div>
 
   <!-- Input y Botón de Enviar -->
-  <div class="chat-input">
-    <input type="text" placeholder="Escribe tu mensaje..." (ngModel)="userMessage">
-    <button (click)="sendMessage()">
-      <mat-icon>send</mat-icon> <!-- Icono de enviar de Material -->
+  <div class="chat-input d-flex p-2 bg-dark border-top">
+    <input type="text" class="form-control me-2 bg-secondary text-light border-0" placeholder="Escribe tu mensaje..." [value]="userMessage()" (input)="userMessage.set($any($event.target).value)" (keyup.enter)="sendMessage()">
+    <button class="btn btn-secondary" (click)="sendMessage()">
+      <mat-icon>send</mat-icon>
     </button>
   </div>
 </div>

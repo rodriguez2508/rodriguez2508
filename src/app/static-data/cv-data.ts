@@ -55,49 +55,56 @@ export const CV_DATA = {
         {
             id: 'linki',
             title: 'Linki – Red Social para Transporte',
-            description: 'Plataforma Full Stack con Angular, NestJS y PostgreSQL. Integra WebSockets (Socket.IO) para chat en tiempo real y OpenLayers para geolocalización precisa.',
-            technologies: ['TypeScript', 'Angular', 'NestJS', 'TypeORM', 'Socket.IO', 'OpenStreetMap', 'Google OAuth'],
-            link: 'linki-cuba.onrender.com'
+            description: 'Plataforma Full Stack desarrollada con Angular, NestJS y PostgreSQL que revoluciona la gestión del transporte personal. Linki integra autenticación con **Google OAuth** y **WhatsApp**, permitiendo a los usuarios iniciar sesión de manera segura y flexible. La aplicación incluye un sistema de **roles** para gestionar permisos y un manejo complejo de estados utilizando **Signals** para garantizar una experiencia de usuario fluida y reactiva. La gestión de mapas y rutas en tiempo real se realiza con **OpenLayers**, incluyendo cálculo de distancias geoespaciales entre puntos y optimización de rutas mediante **Three.js**. Además, se implementó un sistema de chat en tiempo real con **Socket.IO** y se integró **PostgreSQL** para el almacenamiento de datos. Para mejorar la escalabilidad, se utilizaron colas en **Redis** con **BullMQ** y se añadió un sistema de manejo de archivos en la nube para almacenar y gestionar documentos e imágenes de manera eficiente.',
+            technologies: ['TypeScript', 'Angular', 'NestJS', 'TypeORM', 'Socket.IO', 'OpenStreetMap', 'Google OAuth', 'WhatsApp API', 'Signals', 'Three.js', 'PostgreSQL', 'Redis', 'BullMQ', 'Cloud Storage'],
+            link: 'geoloc-app.onrender.com'
         },
         {
             id: 'crm',
             title: 'CRM con Bot de WhatsApp',
-            description: 'Sistema de gestión de clientes desarrollado con NestJS y Angular v19. Integra una API de WhatsApp para automatizar la comunicación y gestión de tickets. Resultado: Reducción del 50% en el tiempo de respuesta manual y centralización de la comunicación con clientes.',
-            technologies: ['NestJS', 'Angular', 'TypeScript', 'WhatsApp API', 'PostgreSQL']
+            description: 'Sistema de gestión de clientes desarrollado con NestJS y Angular v19 que utiliza la librería **Baileys** para la conexión con WhatsApp. El CRM permite a los usuarios iniciar sesión con su cuenta de WhatsApp, automatizar procesos de comunicación, gestionar tickets y centralizar la interacción con clientes. Además, se integra con **MongoDB** para el almacenamiento de datos y ofrece funcionalidades avanzadas como la exportación de datos en múltiples formatos (CSV, JSON) y la automatización basada en flujos de procesos. Este proyecto redujo el tiempo de respuesta manual en un 50% y mejoró la eficiencia en la gestión de clientes.',
+            technologies: ['NestJS', 'Angular', 'TypeScript', 'Baileys', 'WhatsApp API', 'MongoDB', 'Automation', 'Data Export'],
         },
         {
             id: 'migracion-angular',
             title: 'Migración y Modernización de Angular',
-            description: 'Proyecto de actualización de una aplicación de Angular 16 a Angular 19, implementando nuevas características como Signals y takeUntilDestroyed para mejorar la gestión de estado y prevenir fugas de memoria.',
-            technologies: ['Angular', 'TypeScript', 'NgRx', 'SignalStore']
+            description: 'Proyecto de actualización de una aplicación de Angular 16 a Angular 19, implementando nuevas características como Signals y takeUntilDestroyed para mejorar la gestión de estado y prevenir fugas de memoria. Integración de la librería de internacionalización (i18n) de Angular para soportar múltiples idiomas en una aplicación. Se marcaron textos para traducción, se generaron archivos XLF y se configuró la compilación para diferentes idiomas, mejorando la accesibilidad y alcance global de la aplicación.',
+            technologies: ['Angular', 'TypeScript', 'NgRx', 'SignalStore', 'i18n']
         },
         {
             id: 'geoapp',
             title: 'GeoApp – Mapa Interactivo',
-            description: 'Aplicación frontend con Angular y OpenLayers que ofrece geolocalización en tiempo real y cálculo de rutas a través de la API de OpenRouteService.',
-            technologies: ['Angular', 'OpenLayers'],
+            description: 'Aplicación frontend desarrollada con Angular y OpenLayers que ofrece geolocalización en tiempo real, cálculo de rutas a través de la API de OpenRouteService, y gestión avanzada de mapas. La aplicación permite la creación, actualización y eliminación de marcadores en el mapa, así como la visualización de información detallada de cada ubicación. Diseñada con un enfoque responsive, GeoApp se adapta perfectamente a dispositivos móviles y de escritorio, garantizando una experiencia de usuario óptima en cualquier pantalla.',
+            technologies: ['Angular', 'OpenLayers', 'OpenRouteService', 'TypeScript', 'Responsive Design'],
             link: 'github.com/rodriguez2508/GeoApp'
         },
         {
             id: 'staticfiles',
             title: 'Backend-StaticFiles – Servidor de Archivos Estáticos',
-            description: 'Aplicación backend con NestJS que sirve archivos estáticos del frontend, simplificando el despliegue y la gestión de proyectos monolíticos.',
-            technologies: ['NestJS'],
+            description: 'Aplicación backend desarrollada con NestJS que utiliza la librería `@nestjs/serve-static` para servir archivos estáticos del frontend, permitiendo el despliegue de aplicaciones monolíticas de manera eficiente. Este proyecto simplifica la gestión de archivos estáticos (HTML, CSS, JavaScript) al integrarlos directamente en el backend, eliminando la necesidad de un servidor web separado. Además, se implementaron configuraciones avanzadas para optimizar el rendimiento, como la compresión de archivos y el manejo de caché, garantizando una experiencia de usuario rápida y fluida.',
+            technologies: ['NestJS', '@nestjs/serve-static', 'TypeScript', 'Node.js', 'Performance Optimization'],
             link: 'github.com/rodriguez2508/Backend-StaticFiles'
         },
         {
             id: 'angular-unit-test',
-            title: 'AngularUnitTest – Pruebas Unitarias',
-            description: 'Proyecto de demostración en Angular con Jasmine y Karma, logrando una cobertura de código del 90% para garantizar la estabilidad en producción.',
-            technologies: ['Angular', 'Jasmine', 'Karma'],
+            title: 'AngularUnitTest – Pruebas Unitarias en Angular',
+            description: 'Proyecto de demostración en Angular que utiliza Jasmine y Karma para implementar pruebas unitarias en el `AppComponent`, logrando una cobertura de código del 90%. Este enfoque garantiza la estabilidad y calidad del código en producción, al validar el comportamiento esperado de los componentes clave. Las pruebas incluyen la verificación de la inicialización del componente, la interacción con servicios y la correcta renderización de la interfaz de usuario. Este proyecto sirve como base para implementar pruebas unitarias en otros componentes y servicios de la aplicación.',
+            technologies: ['Angular', 'Jasmine', 'Karma', 'Unit Testing', 'Code Coverage'],
             link: 'github.com/rodriguez2508/angular-unit-test'
+        },
+        {
+            id: 'anonimato-flask',
+            title: 'Anonimato Flask – Navegación y Control de Identidad Tor en Linux',
+            description: 'Proyecto en Python + Flask que permite controlar el servicio Tor en un sistema Linux a través de una API REST. Incluye funcionalidades como iniciar/detener Tor, verificar el estado y rotar la identidad de Tor automáticamente para navegar anónimamente. El proyecto utiliza una estructura modular con Flask (Blueprints y servicios separados) y la librería `stem` para interactuar con el puerto de control de Tor. Además, permite acceder a la IP pública real y la IP a través de Tor, ofreciendo una solución completa para la navegación anónima.',
+            technologies: ['Python', 'Flask', 'Tor', 'stem', 'API REST', 'Linux', 'Blueprints'],
+            link: 'github.com/rodriguez2508/Anonimato-Flask'
         }
     ] as Project[],
     skills: {
-        languages: ['TypeScript', 'JavaScript', 'SQL'],
-        frameworks: ['Angular (NgRx, SignalStore)', 'NestJS', 'Node.js', 'TypeORM', 'Socket.IO', 'OpenLayers', 'Capacitor'],
-        databases: ['PostgreSQL', 'MongoDB'],
+        languages: ['TypeScript', 'JavaScript', 'SQL', 'Python'],
+        frameworks: ['Angular (NgRx, SignalStore)', 'NestJS', 'Node.js', 'TypeORM', 'Socket.IO', 'OpenLayers', 'Capacitor', 'Flask'],
+        databases: ['PostgreSQL', 'MongoDB', 'Redis'],
         testing: ['Jasmine', 'Karma', 'Playwright'],
-        tools: ['Git', 'GitHub', 'VS Code', 'Docker', 'PWAs']
+        tools: ['Git', 'GitHub', 'VS Code', 'Docker', 'PWAs', 'Tor', 'stem'],
     }
 };
