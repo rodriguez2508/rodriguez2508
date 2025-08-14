@@ -51,8 +51,8 @@ export class ChatBot {
         this.addMessage('bot', '¡Hola! ¿En qué puedo ayudarte hoy?');
         this.userMessage.set(''); // Limpiar el input antes del return
         return;
-      } else {
-
+      }else {
+        
         // Tokenizar y lematizar el texto del usuario
         const tokens = await this.nlpService.tokenize(text);
         const lemmas = await this.nlpService.lemmatize(text);
@@ -65,7 +65,7 @@ export class ChatBot {
         const entities = await this.nlpService.extractEntities(text);
         console.log('Entities:', entities);
 
-        // Usar tokens y lemas para mejorar la lógica del chatbot
+        // Usar tokens para mejorar la lógica del chatbot
         const normalizedTokens = tokens.map(token => this.normalizeText(token)).join(' ');
         const normalizedLemmas = lemmas.map(lemma => this.normalizeText(lemma)).join(' ');
 
@@ -129,20 +129,10 @@ export class ChatBot {
       if (step.dynamicOptions) {
         options = step.dynamicOptions({ messages: this.messages() });
       }
-      return options.filter(async option => {
-        // Normalizar y lematizar el texto del usuario y las opciones
+      return options.filter(option => {
         const normalizedLabel = this.normalizeText(option.label);
-        const lemmatizedLabel = (await this.nlpService.lemmatize(normalizedLabel)).join(' ');
-        const lemmatizedUserText = (await this.nlpService.lemmatize(normalizedUserText)).join(' ');
-
-        // Coincidencia basada en el texto normalizado y lematizado
-        const labelMatch = lemmatizedLabel.includes(lemmatizedUserText);
-        const keywordMatch = option.keywords?.some(async k => {
-          const normalizedKeyword = this.normalizeText(k);
-          const lemmatizedKeyword = (await this.nlpService.lemmatize(normalizedKeyword)).join(' ');
-          return lemmatizedUserText.includes(lemmatizedKeyword);
-        });
-
+        const labelMatch = normalizedLabel.includes(normalizedUserText);
+        const keywordMatch = option.keywords?.some(k => normalizedUserText.includes(this.normalizeText(k)));
         return labelMatch || keywordMatch;
       });
     });
