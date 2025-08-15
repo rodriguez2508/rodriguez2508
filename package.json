@@ -10,6 +10,7 @@
     "start-hot": "NG_HMR_TEMPLATES=1 ng serve --hmr",
     "start-cold": "ng serve --no-hmr",
     "build": "ng build",
+     "build-ssr": "ng build && cp dist/front/browser/index.csr.html dist/front/browser/index.html",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:front": "node dist/front/server/server.mjs"
