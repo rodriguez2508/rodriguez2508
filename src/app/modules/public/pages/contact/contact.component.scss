@@ -1,19 +1,140 @@
 @use "./../../../../../themes/variables" as *;
 
-
 .contact-background {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/images/landing-3.webp');
   background-size: cover;
   background-position: center;
 }
 
-/* Aumentar el tamaño de los SVG en móviles */
 .svg-mobile {
-  width: 24px; /* Tamaño en móviles */
+  width: 24px;
   height: 24px;
 
   @media (min-width: 992px) {
-    width: 16px; /* Tamaño en pantallas grandes */
+    width: 16px;
     height: 16px;
+  }
+}
+
+/* Estilos para el formulario */
+form {
+  .form-control {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    &:focus {
+      border-color: #007bff; // Color atractivo para focus
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+    }
+  }
+}
+
+/* Hover para botones */
+.btn:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+.rocket-container {
+  position: relative;
+  /* Para posicionar el fuego absolutamente */
+  display: inline-block;
+  /* Para que el contenedor se ajuste al contenido */
+}
+
+.rocket-icon {
+
+  display: none;
+  margin-right: 10px;
+  /* Ajusta el espacio entre el icono y el texto */
+  vertical-align: middle;
+  /* Alinea verticalmente el icono con el texto */
+}
+
+
+.rocket-fire {
+  display: none;
+  position: absolute;
+  bottom: -26px;
+  left: -4%;
+  transform: translateX(-50%) rotate(43deg) !important;
+  width: 20px;
+  height: 30px;
+  background: linear-gradient(to bottom, rgba(255, 200, 0, 0.8), rgba(255, 100, 0, 0.6), rgba(255, 0, 0, 0.4), transparent);
+  border-radius: 50%;
+  animation: fireAnimation 6s infinite, moveAnimation 6s infinite alternate;
+  /* Aumentada la duración de las animaciones */
+
+  z-index: 0;
+  /* Asegura que el fuego esté detrás del cohete */
+}
+
+@media (max-width: 768px) {
+  .rocket-fire {
+    bottom: -8px;
+    left: 42%;
+    display: block;
+  }
+  .rocket-text {
+    padding-top: 50dvw;
+  }
+  .rocket-icon{
+    display: block;
+  }
+  .rocket-container {
+    font-size: 1.5em;
+    display: flex;
+    /* Convertimos el contenedor en un flex container */
+    flex-direction: column;
+    /* Apilamos los elementos verticalmente */
+    align-items: center;
+    /* Centramos los elementos horizontalmente */
+  }
+
+  .rocket-icon {
+    margin-right: 0;
+    /* Eliminamos el margen derecho */
+    margin-bottom: 10px;
+    /* Añadimos un margen inferior para separarlo del fuego */
+  }
+}
+
+@keyframes fireAnimation {
+  0% {
+    opacity: 0.8;
+    transform: translateX(-50%) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) scale(1.5);
+  }
+}
+
+@keyframes moveAnimation {
+  0% {
+    transform: translateY(0px);
+  }
+
+  100% {
+    transform: translateY(-5px);
   }
 }
