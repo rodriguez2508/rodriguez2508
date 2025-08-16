@@ -1,6 +1,5 @@
 @use "./../../../../../themes/variables" as *;
 
-
 .profile-image {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -15,6 +14,13 @@
   .profile-image {
     width: 150px;
     height: 150px;
+  }
+}
+
+.title-h1 {
+  p {
+    font-family: "SFMono-Medium", sans-serif !important;
+    font-style: italic;
   }
 }
 
@@ -75,10 +81,11 @@
 
     img {
       border-color: rgba(255, 255, 255, 0.5); // Borde blanco semi-transparente
-     
+
     }
   }
 }
+
 .web-mockup {
   max-width: 360px;
   margin: 0 auto;
@@ -91,16 +98,20 @@
   background: #f1f1f1;
   border-bottom: 1px solid #ddd;
 }
-.mockup-img{
+
+.mockup-img {
   height: 62dvh;
   object-fit: cover;
-  transition: transform 0.3s ease; /* Transición suave para el zoom */
-  display: block; /* Asegura que la imagen se comporte como un bloque */
+  transition: transform 0.3s ease;
+  /* Transición suave para el zoom */
+  display: block;
+  /* Asegura que la imagen se comporte como un bloque */
 }
- 
+
 
 .mockup-body:hover .mockup-img {
-  transform: scale(1.05); /* Aumenta el tamaño de la imagen en un 5% */
+  transform: scale(1.05);
+  /* Aumenta el tamaño de la imagen en un 5% */
 }
 
 .mockup-header .dot {
@@ -111,9 +122,17 @@
   margin-right: 6px;
 }
 
-.mockup-header .dot.red { background: #ff5f57; }
-.mockup-header .dot.yellow { background: #ffbd2e; }
-.mockup-header .dot.green { background: #28c840; }
+.mockup-header .dot.red {
+  background: #ff5f57;
+}
+
+.mockup-header .dot.yellow {
+  background: #ffbd2e;
+}
+
+.mockup-header .dot.green {
+  background: #28c840;
+}
 
 /* Cuerpo */
 .mockup-body {
@@ -125,6 +144,5 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.6);
 }
-

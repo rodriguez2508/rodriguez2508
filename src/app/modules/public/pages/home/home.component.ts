@@ -5,6 +5,7 @@ import { TextPlugin } from 'gsap/TextPlugin';
 
 import { CV_DATA } from '@static-data/cv-data';
 import { ParticlesService } from '@services/particles/particles.service';
+import { RouterLink } from '@angular/router';
 
 
 
@@ -12,7 +13,10 @@ import { ParticlesService } from '@services/particles/particles.service';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    RouterLink
+  ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

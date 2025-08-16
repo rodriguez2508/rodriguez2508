@@ -6,3 +6,27 @@
 @use "./themes/_custom_styles" as *;
 
 @use "tailwindcss"; 
+
+
+@font-face {
+  font-family: 'Calibre-Regular'; /* Define un nombre para tu fuente */
+  src: url('/assets/fonts/Calibre/Calibre-Regular.woff2') format('woff2'), /* Ruta a tu archivo .woff2 */
+       url('/assets/fonts/Calibre-Regular.woff') format('woff');   /* Ruta a tu archivo .woff (opcional, para compatibilidad) */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Calibre-Medium';
+  src: url('/assets/fonts/Calibre/Calibre-Medium.woff2') format('woff2'),
+       url('/assets/fonts/Calibre-Medium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'SFMono-Medium';
+  src: url('/assets/fonts/SFMono/SFMono-Medium.woff2') format('woff2'),
+       url('/assets/fonts/Calibre-Medium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
