@@ -87,6 +87,11 @@ form {
   /* Asegura que el fuego esté detrás del cohete */
 }
 
+/* Oculta el texto por defecto */
+.desktop-text {
+  display: inline;
+}
+
 @media (max-width: 768px) {
   .rocket-fire {
     bottom: -8px;
@@ -114,6 +119,26 @@ form {
     /* Eliminamos el margen derecho */
     margin-bottom: 10px;
     /* Añadimos un margen inferior para separarlo del fuego */
+  }
+
+  /* Muestra los iconos SVG en la vista móvil */
+  .mobile-icon {
+    display: inline-block;
+    width: 24px; /* Ajusta el tamaño del icono */
+    height: 24px;
+    margin-right: 0; /* Elimina el margen derecho */
+    vertical-align: middle; /* Alinea verticalmente el icono con el texto */
+  }
+
+  /* Oculta el texto en la vista móvil */
+  .desktop-text {
+    display: none;
+  }
+
+
+  /* Oculta los iconos de Bootstrap en la vista móvil (si los estás usando) */
+  .bi {
+    display: none;
   }
 }
 
