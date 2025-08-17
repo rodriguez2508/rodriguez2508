@@ -1,4 +1,4 @@
-import { afterNextRender, AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, OnDestroy, OnInit } from '@angular/core';
+import { afterNextRender, AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import gsap from 'gsap';
 import { TextPlugin } from 'gsap/TextPlugin';
@@ -6,6 +6,7 @@ import { TextPlugin } from 'gsap/TextPlugin';
 import { CV_DATA } from '@static-data/cv-data';
 import { ParticlesService } from '@services/particles/particles.service';
 import { RouterLink } from '@angular/router';
+import { MatIcon } from '@angular/material/icon';
 
 
 
@@ -15,7 +16,8 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [
     CommonModule,
-    RouterLink
+    RouterLink,
+    MatIcon
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
@@ -32,6 +34,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   private elementRef = inject(ElementRef);
 
   data = CV_DATA; // Asigna los datos personales a una propiedad
+  
+  @ViewChild('rocketFire') rocketFire!: ElementRef;
 
 
   constructor() {
@@ -76,7 +80,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       });
     }
 
-    this.initTypewriterEffect();
+    this.initTypewriterAnimations();
+
+    this.initRocketAnimations();
   }
 
   /**
@@ -100,7 +106,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     observer.observe(element); // Comenzar a observar el elemento
   }
 
-  private initTypewriterEffect(): void {
+  private initTypewriterAnimations(): void {
     const typewriterElement = this.elementRef.nativeElement.querySelector('.typewriter-gsap span');
     const text = 'Linki como Plataforma, no como Intermediario';
     const duration = 5; // Duración de la animación en segundos
@@ -122,10 +128,34 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
           delay: 10, // Espera 1 segundo antes de borrar
           onComplete: () => {
             // Repite el ciclo
-            this.initTypewriterEffect();
+            this.initTypewriterAnimations();
           }
         });
       }
     });
+  }
+  private initRocketAnimations(): void {
+   
+    // Animación para el cohete
+    if (this.rocketFire) {
+      this.observeElement(this.rocketFire.nativeElement, () => {
+        gsap.to(this.rocketFire.nativeElement, {
+          duration: 1,
+          opacity: 0,
+          scale: 1.5,
+          yoyo: true,
+          repeat: -1,
+          ease: "power1.inOut",
+        });
+
+        gsap.to(this.rocketFire.nativeElement, {
+          duration: 3,
+          y: -5,
+          yoyo: true,
+          repeat: -1,
+          ease: "sine.inOut",
+        });
+      });
+    }
   }
 }

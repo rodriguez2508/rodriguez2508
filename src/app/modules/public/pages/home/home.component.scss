@@ -17,12 +17,6 @@
   }
 }
 
-.title-h1 {
-  p {
-    font-family: "SFMono-Medium", sans-serif !important;
-    font-style: italic;
-  }
-}
 
 .card {
   transition: transform 0.2s ease;
@@ -145,4 +139,300 @@
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.6);
+}
+
+.rocket-container {
+  position: relative;
+  /* Para posicionar el fuego absolutamente */
+  display: inline-block;
+  /* Para que el contenedor se ajuste al contenido */
+}
+
+.rocket-icon {
+
+  display: none;
+  margin-right: 10px;
+  /* Ajusta el espacio entre el icono y el texto */
+  vertical-align: middle;
+  /* Alinea verticalmente el icono con el texto */
+}
+
+
+.rocket-fire {
+  display: none;
+  position: absolute;
+  bottom: -26px;
+  left: -4%;
+  transform: translateX(-50%) rotate(43deg) !important;
+  width: 20px;
+  height: 30px;
+  background: linear-gradient(to bottom, rgba(255, 200, 0, 0.8), rgba(255, 100, 0, 0.6), rgba(255, 0, 0, 0.4), transparent);
+  border-radius: 50%;
+  animation: fireAnimation 6s infinite, moveAnimation 6s infinite alternate;
+  /* Aumentada la duración de las animaciones */
+
+  z-index: 0;
+  /* Asegura que el fuego esté detrás del cohete */
+}
+
+/* Oculta el texto por defecto */
+.desktop-text {
+  display: inline;
+}
+
+@media (max-width: 768px) {
+  .rocket-fire {
+    bottom: -8px;
+    left: 42%;
+    display: block;
+  }
+
+  .rocket-icon {
+    display: block;
+  }
+
+  .rocket-container {
+    font-size: 1.5em;
+    display: flex;
+    /* Convertimos el contenedor en un flex container */
+    flex-direction: column;
+    /* Apilamos los elementos verticalmente */
+    align-items: center;
+    /* Centramos los elementos horizontalmente */
+  }
+
+  .rocket-icon {
+    margin-right: 0;
+    /* Eliminamos el margen derecho */
+    margin-bottom: 10px;
+    /* Añadimos un margen inferior para separarlo del fuego */
+  }
+
+  /* Muestra los iconos SVG en la vista móvil */
+  .mobile-icon {
+    display: inline-block;
+    width: 24px;
+    /* Ajusta el tamaño del icono */
+    height: 24px;
+    margin-right: 0;
+    /* Elimina el margen derecho */
+    vertical-align: middle;
+    /* Alinea verticalmente el icono con el texto */
+  }
+
+  /* Oculta el texto en la vista móvil */
+  .desktop-text {
+    display: none;
+  }
+
+
+  /* Oculta los iconos de Bootstrap en la vista móvil (si los estás usando) */
+  .bi {
+    display: none;
+  }
+}
+
+/* Estilos para la sección de la línea de tiempo */
+.timeline-section {
+  position: relative;
+  padding: 50px 0;
+}
+
+.timeline {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  background-color: gray;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -1px;
+}
+
+.timeline-item {
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.timeline-item:nth-child(odd) {
+  padding-right: 50px;
+}
+
+.timeline-item:nth-child(even) {
+  padding-left: 50px;
+}
+
+.timeline-content {
+  z-index: 1;
+  position: relative;
+  background-color: #343a40;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Círculos en la línea de tiempo */
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: #6c757d;
+  border: 3px solid #343a40;
+  top: 50%;
+  border-radius: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 0;
+}
+
+/* Estilos para la sección de la línea de tiempo */
+.timeline-section {
+  position: relative;
+  padding: 50px 0;
+}
+
+.timeline {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  background-color: gray;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -1px;
+}
+
+.timeline-item {
+  margin-bottom: 50px;
+  position: relative;
+}
+
+/* Alterna la posición de los elementos */
+.timeline-item:nth-child(3n+1) {
+  /* 1er, 4to, 7mo... */
+  padding-right: 50px;
+}
+
+.timeline-item:nth-child(3n+2) {
+  /* 2do, 5to, 8vo... */
+  padding-left: 50px;
+}
+
+.timeline-item:nth-child(3n+3) {
+  /* 3er, 6to, 9no... */
+  padding-right: 50px;
+  /* O padding-left: 50px; si prefieres */
+}
+
+.timeline-content {
+  background-color: #343a40;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Círculos en la línea de tiempo */
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: #6c757d;
+  border: 3px solid #343a40;
+  top: 50%;
+  border-radius: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 0;
+}
+
+/* Posiciona los elementos a la izquierda o derecha */
+/* Alterna la posición de los elementos */
+.timeline-item:nth-child(3n+1)::before {
+  /* 1er, 4to, 7mo... */
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: -20px;
+  border: 10px solid transparent;
+  border-left-color: #343a40;
+}
+
+.timeline-item:nth-child(3n+2)::before {
+  /* 2do, 5to, 8vo... */
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: -20px;
+  border: 10px solid transparent;
+  border-right-color: #343a40;
+}
+
+.timeline-item:nth-child(3n+3)::before {
+  /* 3er, 6to, 9no... */
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: -20px;
+  /* O left: -20px; si prefieres */
+  border: 10px solid transparent;
+  border-left-color: #343a40;
+  /* O border-right-color: #343a40; si prefieres */
+}
+
+/* Estilos para la vista móvil */
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 10%;
+  }
+
+  .timeline-item:nth-child(3n+1) {
+    padding-right: 0;
+    padding-left: 50px;
+  }
+
+  .timeline-item:nth-child(3n+2) {
+    padding-left: 50px;
+  }
+
+  .timeline-item:nth-child(3n+3) {
+    padding-right: 0;
+    padding-left: 50px;
+  }
+
+  .timeline-item:nth-child(3n+1)::before {
+    right: auto;
+    left: -20px;
+    border-right-color: #343a40;
+    border-left-color: transparent;
+  }
+
+  .timeline-item:nth-child(3n+2)::before {
+    border: 10px solid transparent;
+    border-right-color: #343a40;
+  }
+
+  .timeline-item:nth-child(3n+3)::before {
+    right: auto;
+    left: -20px;
+    border-right-color: #343a40;
+    border-left-color: transparent;
+  }
+
+  .timeline-item::after {
+    left: 10%;
+  }
 }

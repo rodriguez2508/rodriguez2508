@@ -1,4 +1,5 @@
 @use "./variables" as *;
+@use "./_custom_animations" as *;
 
 @supports (-webkit-overflow-scrolling: touch) {
 
